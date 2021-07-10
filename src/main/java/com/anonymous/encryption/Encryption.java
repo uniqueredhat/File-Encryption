@@ -1,6 +1,9 @@
 package com.anonymous.encryption;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+
 import java.util.Random;
 
 import javax.crypto.Cipher;
@@ -15,13 +18,18 @@ import javax.crypto.spec.PBEParameterSpec;
 
 
 
-public class Encryption {
-public static void main(String[] args) throws Exception {
+public interface Encryption {
 
+    static void Encrypt() throws Exception {
+//    String password;
     FileOutputStream outFile;
     try (FileInputStream inFile = new FileInputStream("/home/anonymous/Desktop/Test.txt")) {
-        outFile = new FileOutputStream("/home/anonymous/Desktop/plainfile.desktop");
-        String password = "javapapers";
+        outFile = new FileOutputStream("/home/anonymous/Desktop/plainfile.desk");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+       System.out.println("Enter password to Encrypt the file the file");
+       String password = bufferedReader.readLine().trim();
+        System.out.println(password);
+        //String password = "javapapers";
         PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
         SecretKeyFactory secretKeyFactory = SecretKeyFactory
                 .getInstance("PBEWithMD5AndTripleDES");
@@ -45,5 +53,8 @@ public static void main(String[] args) throws Exception {
     }
     outFile.flush();
     outFile.close();
+    System.out.println("Encrypted sucessfully");
   }
+    
+    
 }
