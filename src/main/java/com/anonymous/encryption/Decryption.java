@@ -1,6 +1,8 @@
 package com.anonymous.encryption;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -17,8 +19,11 @@ import javax.crypto.spec.PBEParameterSpec;
 
 public class Decryption {
     public static void main(String[] args) throws Exception {
+     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+     System.out.println("Enter password to Decrypt the file");
+     String password = bufferedReader.readLine().trim();
 
-    String password = "javapapers";
+//    String password = "javapapers";
     PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
     SecretKeyFactory secretKeyFactory = SecretKeyFactory
         .getInstance("PBEWithMD5AndTripleDES");
