@@ -1,11 +1,8 @@
 package com.anonymous.encryption;
-import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-
 import java.util.Random;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -20,19 +17,14 @@ import javax.crypto.spec.PBEParameterSpec;
 
 public class Encryption {
 
-    static void Encrypt(String fileLocation) throws Exception {
-//    String password;
+
+    static boolean Encrypt(String fileName,String filePathWithFileName,String fileLocation,String passWord) throws Exception {
     FileOutputStream outFile;
-    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    
-//    System.out.println(Location);
-    try (FileInputStream inFile = new FileInputStream(fileLocation)) {
-        outFile = new FileOutputStream("/home/anonymous/Desktop/plainfile.desk");
-       System.out.println("Enter password to Encrypt the file the file");
-       String password = bufferedReader.readLine().trim();
-//        System.out.println(password);
-        //String password = "javapapers";
-        PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
+
+    try (FileInputStream inFile = new FileInputStream(filePathWithFileName)) {
+        outFile = new FileOutputStream(fileLocation+"/"+fileName+".des");
+        System.out.println(fileLocation+"/"+fileName);
+        PBEKeySpec pbeKeySpec = new PBEKeySpec(passWord.toCharArray());
         SecretKeyFactory secretKeyFactory = SecretKeyFactory
                 .getInstance("PBEWithMD5AndTripleDES");
         SecretKey secretKey = secretKeyFactory.generateSecret(pbeKeySpec);
@@ -55,8 +47,10 @@ public class Encryption {
     }
     outFile.flush();
     outFile.close();
-    System.out.println("Encrypted sucessfully");
+    return true;
+    
   }
+
     
     
 }
