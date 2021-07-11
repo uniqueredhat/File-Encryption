@@ -14,13 +14,12 @@ import javax.crypto.spec.PBEParameterSpec;
  * @author AnOnYmOuS
  */
 
-
-
-
 public interface Decryption {
 
     public static void Decrypt() throws Exception {
-     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Enter the location of the decrypted file");
+    String LocationOfFile = bufferedReader.readLine().trim();
      System.out.println("Enter password to Decrypt the file");
 
     String password = bufferedReader.readLine().trim();
@@ -31,7 +30,7 @@ public interface Decryption {
     SecretKey secretKey = secretKeyFactory.generateSecret(pbeKeySpec);
 
     FileOutputStream fos;
-        try (FileInputStream fis = new FileInputStream("/home/anonymous/Desktop/plainfile.desk")) {
+        try (FileInputStream fis = new FileInputStream(LocationOfFile)) {
             byte[] salt = new byte[8];
             fis.read(salt);
             PBEParameterSpec pbeParameterSpec = new PBEParameterSpec(salt, 100);

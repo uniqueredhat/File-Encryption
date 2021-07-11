@@ -23,12 +23,15 @@ public interface Encryption {
     static void Encrypt() throws Exception {
 //    String password;
     FileOutputStream outFile;
-    try (FileInputStream inFile = new FileInputStream("/home/anonymous/Desktop/Test.txt")) {
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Enter the location of the file");
+    String LocationOfFile = bufferedReader.readLine().trim();
+//    System.out.println(Location);
+    try (FileInputStream inFile = new FileInputStream(LocationOfFile)) {
         outFile = new FileOutputStream("/home/anonymous/Desktop/plainfile.desk");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
        System.out.println("Enter password to Encrypt the file the file");
        String password = bufferedReader.readLine().trim();
-        System.out.println(password);
+//        System.out.println(password);
         //String password = "javapapers";
         PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
         SecretKeyFactory secretKeyFactory = SecretKeyFactory
