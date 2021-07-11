@@ -14,7 +14,7 @@ import javax.crypto.spec.PBEParameterSpec;
  * @author AnOnYmOuS
  */
 
-public interface Decryption {
+public class Decryption {
 
     public static void Decrypt() throws Exception {
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

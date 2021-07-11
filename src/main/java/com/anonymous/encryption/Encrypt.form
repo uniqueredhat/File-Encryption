@@ -84,7 +84,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter paraphase"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Open Sans Extrabold" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enter Paraphase"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>

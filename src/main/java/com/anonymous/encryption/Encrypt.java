@@ -16,11 +16,12 @@ public class Encrypt extends javax.swing.JFrame {
     public Encrypt() {
         initComponents();
     }
-public void EncryptData(String fileLocation) throws Exception{
-   System.out.println(fileLocation);
-   Encryption.Encrypt(fileLocation);
-}
- 
+
+    public void EncryptData(String fileLocation) throws Exception {
+        System.out.println(fileLocation);
+        Encryption.Encrypt(fileLocation);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,7 +51,8 @@ public void EncryptData(String fileLocation) throws Exception{
             }
         });
 
-        jTextField1.setText("Enter paraphase");
+        jTextField1.setFont(new java.awt.Font("Open Sans Extrabold", 1, 12)); // NOI18N
+        jTextField1.setText("Enter Paraphase");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -97,25 +99,19 @@ public void EncryptData(String fileLocation) throws Exception{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                                                      
-        JFileChooser file = new JFileChooser();
-        file.setCurrentDirectory(new File("user.dir"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("All","*.*");
-        file.addChoosableFileFilter(filter);
-        file.showSaveDialog(null);
-        
 
-            File f = file.getSelectedFile();
-            String fileLocation = f.getAbsolutePath();
-            JOptionPane.showMessageDialog(this, fileLocation);
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             try {
-                EncryptData(fileLocation);
+                EncryptData(selectedFile.getAbsolutePath());
             } catch (Exception ex) {
                 Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        
-     
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -126,9 +122,8 @@ public void EncryptData(String fileLocation) throws Exception{
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Encrypt().setVisible(true);

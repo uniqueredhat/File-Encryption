@@ -39,6 +39,7 @@ public class Mine extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("File Encryption");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);
 
@@ -62,7 +63,7 @@ public class Mine extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(173, 173, 173)
+                .addGap(182, 182, 182)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
