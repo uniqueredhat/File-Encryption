@@ -6,6 +6,6 @@ package com.anonymous.encryption;
  */
 
 public interface classExtending extends Encryption,Decryption{
-void Page(String s);
+void Page(String Page);
 
 }
