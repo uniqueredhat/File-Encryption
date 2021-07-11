@@ -18,16 +18,15 @@ import javax.crypto.spec.PBEParameterSpec;
 
 
 
-public interface Encryption {
+public class Encryption {
 
-    static void Encrypt() throws Exception {
+    static void Encrypt(String fileLocation) throws Exception {
 //    String password;
     FileOutputStream outFile;
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Enter the location of the file");
-    String LocationOfFile = bufferedReader.readLine().trim();
+    
 //    System.out.println(Location);
-    try (FileInputStream inFile = new FileInputStream(LocationOfFile)) {
+    try (FileInputStream inFile = new FileInputStream(fileLocation)) {
         outFile = new FileOutputStream("/home/anonymous/Desktop/plainfile.desk");
        System.out.println("Enter password to Encrypt the file the file");
        String password = bufferedReader.readLine().trim();
