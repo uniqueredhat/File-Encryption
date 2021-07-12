@@ -167,7 +167,6 @@ public class Encrypt extends javax.swing.JFrame {
             new Encrypt().setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton fileSelect;
     private javax.swing.JDialog jDialog1;
