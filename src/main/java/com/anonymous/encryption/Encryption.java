@@ -22,8 +22,7 @@ public class Encryption {
     FileOutputStream outFile;
 
     try (FileInputStream inFile = new FileInputStream(filePathWithFileName)) {
-        outFile = new FileOutputStream(fileLocation+"/"+fileName+".des");
-        System.out.println(fileLocation+"/"+fileName);
+        outFile = new FileOutputStream(fileLocation+"/"+fileName);
         PBEKeySpec pbeKeySpec = new PBEKeySpec(passWord.toCharArray());
         SecretKeyFactory secretKeyFactory = SecretKeyFactory
                 .getInstance("PBEWithMD5AndTripleDES");
