@@ -2,6 +2,7 @@ package com.anonymous.encryption;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,11 +32,14 @@ public class Mine extends javax.swing.JFrame {
 
         encryptButton = new javax.swing.JButton();
         decryptButton = new javax.swing.JButton();
+        CloseButton = new javax.swing.JButton();
+        BackgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("File Encryption");
         setPreferredSize(new java.awt.Dimension(600, 600));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         encryptButton.setText("Encrypt");
         encryptButton.setCursor(new java.awt.Cursor(java.awt.Cursor.NW_RESIZE_CURSOR));
@@ -44,6 +48,8 @@ public class Mine extends javax.swing.JFrame {
                 encryptButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(encryptButton);
+        encryptButton.setBounds(216, 113, 153, 66);
 
         decryptButton.setText("Decrypt");
         decryptButton.addActionListener(new java.awt.event.ActionListener() {
@@ -51,27 +57,21 @@ public class Mine extends javax.swing.JFrame {
                 decryptButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(decryptButton);
+        decryptButton.setBounds(216, 316, 153, 67);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(encryptButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(decryptButton, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addContainerGap(231, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(encryptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                .addComponent(decryptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
-        );
+        CloseButton.setText("Close");
+        CloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CloseButton);
+        CloseButton.setBounds(470, 440, 90, 50);
+
+        BackgroundImage.setIcon(new javax.swing.ImageIcon("/home/anonymous/Downloads/pexels-pixabay-207580.jpg")); // NOI18N
+        getContentPane().add(BackgroundImage);
+        BackgroundImage.setBounds(0, 0, 600, 500);
 
         setSize(new java.awt.Dimension(610, 530));
         setLocationRelativeTo(null);
@@ -88,6 +88,12 @@ public class Mine extends javax.swing.JFrame {
         decrypt.setVisible(true);
         close();
     }//GEN-LAST:event_decryptButtonActionPerformed
+
+    private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showConfirmDialog(this, "Are you Sure");
+        System.exit(0);
+    }//GEN-LAST:event_CloseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +133,8 @@ public class Mine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundImage;
+    private javax.swing.JButton CloseButton;
     private javax.swing.JButton decryptButton;
     private javax.swing.JButton encryptButton;
     // End of variables declaration//GEN-END:variables
