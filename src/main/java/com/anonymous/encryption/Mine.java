@@ -2,6 +2,7 @@ package com.anonymous.encryption;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -78,14 +79,17 @@ public class Mine extends javax.swing.JFrame {
     }//GEN-LAST:event_encryptButtonActionPerformed
 
     private void decryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptButtonActionPerformed
-        Decrypts decrypt = new Decrypts();
+        Decrypt decrypt = new Decrypt();
         decrypt.setVisible(true);
         close();
     }//GEN-LAST:event_decryptButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showConfirmDialog(this, "Are you Sure");
+        ImageIcon icon = new ImageIcon("src/images/exitImage.png");
+    int input = JOptionPane.showConfirmDialog(null, "Do you want to exit", "Exit...",
+            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+    if(input == 0)
         System.exit(0);
     }//GEN-LAST:event_CloseButtonActionPerformed
 

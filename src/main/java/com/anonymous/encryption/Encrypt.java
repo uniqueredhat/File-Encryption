@@ -27,6 +27,7 @@ public class Encrypt extends javax.swing.JFrame {
     }
     private void Encryption() throws Exception{
    boolean sucess = Encryption.Encrypt(fileName,filePathWithFileName,fileLocation,passWord,extension);
+   
    if(sucess){
    Mine mine = new Mine();
         mine.setVisible(true);

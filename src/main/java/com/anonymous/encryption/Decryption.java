@@ -15,28 +15,24 @@ import javax.crypto.spec.PBEParameterSpec;
  */
 
 public class Decryption {
+    private static String getFileName(String fileName){
+    return fileName.substring(0, fileName.lastIndexOf('.'));
+    }
 
-    public static void Decrypt() throws Exception {
-    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Enter the location of the decrypted file");
-    String LocationOfFile = bufferedReader.readLine().trim();
-     System.out.println("Enter password to Decrypt the file");
-
-    String password = bufferedReader.readLine().trim();
-        System.out.println(password);
-    PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
+    public static boolean Decrypt(String fileName,String filePathWithFileName,String fileLocation,String passWord,String extension) throws Exception {
+    PBEKeySpec pbeKeySpec = new PBEKeySpec(passWord.toCharArray());
     SecretKeyFactory secretKeyFactory = SecretKeyFactory
         .getInstance("PBEWithMD5AndTripleDES");
     SecretKey secretKey = secretKeyFactory.generateSecret(pbeKeySpec);
 
     FileOutputStream fos;
-        try (FileInputStream fis = new FileInputStream(LocationOfFile)) {
+        try (FileInputStream fis = new FileInputStream(filePathWithFileName)) {
             byte[] salt = new byte[8];
             fis.read(salt);
             PBEParameterSpec pbeParameterSpec = new PBEParameterSpec(salt, 100);
             Cipher cipher = Cipher.getInstance("PBEWithMD5AndTripleDES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, pbeParameterSpec);
-            fos = new FileOutputStream("/home/anonymous/Desktop/plainfile.txt");
+            fos = new FileOutputStream(fileLocation+"/"+getFileName(fileName)+"."+extension);
             byte[] in = new byte[64];
             int read;
             while ((read = fis.read(in)) != -1) {
@@ -50,5 +46,6 @@ public class Decryption {
     fos.flush();
     fos.close();
     System.out.println("Decrypted Sucessfully");
+    return true;
   }
 }
