@@ -4,7 +4,6 @@ package com.anonymous.encryption;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -27,7 +26,7 @@ public class Encrypt extends javax.swing.JFrame {
         initComponents();
     }
     private void Encryption() throws Exception{
-   boolean sucess = Encryption.Encrypt(fileName,filePathWithFileName,fileLocation,passWord);
+   boolean sucess = Encryption.Encrypt(fileName,filePathWithFileName,fileLocation,passWord,extension);
    if(sucess){
    Mine mine = new Mine();
         mine.setVisible(true);
@@ -39,12 +38,35 @@ public class Encrypt extends javax.swing.JFrame {
     WindowEvent closeWindow = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
+    
+    private static String reverseString(String extension){
+        char c[]=extension.toCharArray();
+        String reverse="";
+
+        for(int i=c.length-1;i>=0;i--){
+            reverse+=c[i];
+            }
+        return reverse;
+    }
+    private static String increaseAscii(String extension){
+    char c[]=extension.toCharArray();
+    String increasedAscii="";
+        for(int i =0;i<extension.length();i++){
+        increasedAscii += (char)((int)c[i]+1);
+        }
+        
+        return increasedAscii;
+    }
+    
     public String getExtension(String fileName) {
     int index = fileName.lastIndexOf('.');
     String extension = null;
     if(index > 0) {
       extension = fileName.substring(index + 1);
     }
+    extension = extension.trim();
+    extension = reverseString(extension);
+    extension = increaseAscii(extension);
         return extension;
 }
     @SuppressWarnings("unchecked")
@@ -56,6 +78,7 @@ public class Encrypt extends javax.swing.JFrame {
         submitButton = new javax.swing.JButton();
         password = new javax.swing.JTextField();
         lab = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -73,6 +96,7 @@ public class Encrypt extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(600, 500));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         fileSelect.setText("Select File");
         fileSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +104,8 @@ public class Encrypt extends javax.swing.JFrame {
                 fileSelectActionPerformed(evt);
             }
         });
+        getContentPane().add(fileSelect);
+        fileSelect.setBounds(211, 102, 177, 54);
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -87,48 +113,22 @@ public class Encrypt extends javax.swing.JFrame {
                 submitButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(submitButton);
+        submitButton.setBounds(201, 305, 181, 64);
 
         password.setFont(new java.awt.Font("Open Sans Extrabold", 1, 14)); // NOI18N
         password.setText("Enter Password");
+        getContentPane().add(password);
+        password.setBounds(174, 211, 239, 68);
 
         lab.setFont(new java.awt.Font("Open Sans Extrabold", 1, 18)); // NOI18N
         lab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lab);
+        lab.setBounds(217, 162, 155, 43);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fileSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(177, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(208, 208, 208))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(fileSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/anonymous/Downloads/pexels-dan-nelson-4973899.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 590, 470);
 
         setSize(new java.awt.Dimension(600, 500));
         setLocationRelativeTo(null);
@@ -170,6 +170,7 @@ public class Encrypt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton fileSelect;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lab;
     private javax.swing.JTextField password;
     private javax.swing.JButton submitButton;

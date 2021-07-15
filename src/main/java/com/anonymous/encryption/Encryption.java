@@ -16,13 +16,15 @@ import javax.crypto.spec.PBEParameterSpec;
 
 
 public class Encryption {
+    private static String getFileName(String fileName){
+    return fileName.substring(0, fileName.lastIndexOf('.'));
+    }
 
-
-    static boolean Encrypt(String fileName,String filePathWithFileName,String fileLocation,String passWord) throws Exception {
+    static boolean Encrypt(String fileName,String filePathWithFileName,String fileLocation,String passWord,String extension) throws Exception {
     FileOutputStream outFile;
 
     try (FileInputStream inFile = new FileInputStream(filePathWithFileName)) {
-        outFile = new FileOutputStream(fileLocation+"/"+fileName);
+        outFile = new FileOutputStream(fileLocation+"/"+getFileName(fileName)+"."+extension);
         PBEKeySpec pbeKeySpec = new PBEKeySpec(passWord.toCharArray());
         SecretKeyFactory secretKeyFactory = SecretKeyFactory
                 .getInstance("PBEWithMD5AndTripleDES");
